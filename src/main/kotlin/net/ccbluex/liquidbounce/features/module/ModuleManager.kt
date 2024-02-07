@@ -103,6 +103,7 @@ object ModuleManager : Listenable, Iterable<Module> by modules {
             ModuleCriticals,
             ModuleHitbox,
             ModuleKillAura,
+            ModuleTpAura,
             ModuleSuperKnockback,
             ModuleTimerRange,
             ModuleVelocity,
