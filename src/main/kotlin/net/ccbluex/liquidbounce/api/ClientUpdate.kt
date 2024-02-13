@@ -22,7 +22,7 @@ import com.vdurmont.semver4j.Semver
 import net.ccbluex.liquidbounce.LiquidBounce
 import net.ccbluex.liquidbounce.LiquidBounce.IN_DEVELOPMENT
 import net.ccbluex.liquidbounce.LiquidBounce.clientVersion
-import net.ccbluex.liquidbounce.api.ClientApi.requestNewestBuildEndpoint
+import net.ccbluex.liquidbounce.api.v1.ClientApiV1.requestNewestBuildEndpoint
 import net.ccbluex.liquidbounce.utils.client.logger
 import java.text.SimpleDateFormat
 import java.util.*

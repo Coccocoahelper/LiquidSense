@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with LiquidBounce. If not, see <https://www.gnu.org/licenses/>.
  */
-package net.ccbluex.liquidbounce.api
+package net.ccbluex.liquidbounce.api.v1
 
 import com.google.gson.annotations.SerializedName
 import net.ccbluex.liquidbounce.LiquidBounce
@@ -33,7 +33,7 @@ import java.util.UUID
  *
  * This represents all API endpoints of the LiquidBounce API for the usage on the client.
  */
-object ClientApi {
+object ClientApiV1 {
 
     private const val API_ENDPOINT = "https://api.liquidbounce.net/api/v1"
     private const val AVATAR_UUID_URL = "https://avatar.liquidbounce.net/avatar/%s/100"
@@ -64,12 +64,6 @@ object ClientApi {
 
     fun requestSettingsScript(settingId: String, branch: String = HARD_CODED_BRANCH) =
         plainEndpointRequest("client/$branch/settings/$settingId")
-
-    /**
-     * todo: this was not implemented yet, might be added in future versions
-     */
-    fun reportSettings(settingId: String, branch: String = HARD_CODED_BRANCH) =
-        endpointRequest<EmptyResponse>("client/$branch/settings/report/$settingId")
 
     /**
      * todo: this was not implemented yet, might be added in future versions
