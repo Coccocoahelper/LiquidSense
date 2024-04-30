@@ -28,6 +28,7 @@ import net.ccbluex.liquidbounce.features.module.modules.combat.ModuleCriticals;
 import net.ccbluex.liquidbounce.features.module.modules.combat.ModuleKeepSprint;
 import net.ccbluex.liquidbounce.features.module.modules.exploit.ModuleAntiReducedDebugInfo;
 import net.ccbluex.liquidbounce.features.module.modules.movement.ModuleNoClip;
+import net.ccbluex.liquidbounce.features.module.modules.player.ModuleReach;
 import net.ccbluex.liquidbounce.features.module.modules.player.nofall.ModuleNoFall;
 import net.ccbluex.liquidbounce.features.module.modules.player.nofall.modes.NoFallNoGround;
 import net.ccbluex.liquidbounce.features.module.modules.render.ModuleRotations;
@@ -36,7 +37,11 @@ import net.ccbluex.liquidbounce.utils.aiming.AimPlan;
 import net.ccbluex.liquidbounce.utils.aiming.Rotation;
 import net.ccbluex.liquidbounce.utils.aiming.RotationManager;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.registry.tag.FluidTags;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.Vec3d;
 import org.spongepowered.asm.mixin.Mixin;
@@ -122,7 +127,7 @@ public abstract class MixinPlayerEntity extends MixinLivingEntity {
     }
 
     @ModifyExpressionValue(method = "getBlockBreakingSpeed", at = @At(value = "INVOKE",
-            target = "Lnet/minecraft/entity/player/PlayerEntity;hasStatusEffect(Lnet/minecraft/entity/effect/StatusEffect;)Z"))
+            target = "Lnet/minecraft/entity/player/PlayerEntity;hasStatusEffect(Lnet/minecraft/registry/entry/RegistryEntry;)Z"))
     private boolean injectFatigueNoSlow(boolean original) {
         ModuleNoSlowBreak module = ModuleNoSlowBreak.INSTANCE;
         if ((Object) this == MinecraftClient.getInstance().player && module.getEnabled() && module.getMiningFatigue()) {
@@ -131,6 +136,7 @@ public abstract class MixinPlayerEntity extends MixinLivingEntity {
 
         return original;
     }
+
 
     @ModifyExpressionValue(method = "getBlockBreakingSpeed", at = @At(value = "INVOKE",
             target = "Lnet/minecraft/entity/player/PlayerEntity;isSubmergedIn(Lnet/minecraft/registry/tag/TagKey;)Z"))
@@ -206,6 +212,22 @@ public abstract class MixinPlayerEntity extends MixinLivingEntity {
         }
 
         instance.setSprinting(b);
+    }
+
+    @Inject(method = "getEntityInteractionRange", at = @At("HEAD"), cancellable = true)
+    private void hookEntityInteractionRange(CallbackInfoReturnable<Float> cir) {
+        if ((Object) this == MinecraftClient.getInstance().player && ModuleReach.INSTANCE.getEnabled()) {
+            cir.setReturnValue(ModuleReach.INSTANCE.getCombatReach());
+            cir.cancel();
+        }
+    }
+
+    @Inject(method = "getBlockInteractionRange", at = @At("HEAD"), cancellable = true)
+    private void hookBlockInteractionRange(CallbackInfoReturnable<Float> cir) {
+        if ((Object) this == MinecraftClient.getInstance().player && ModuleReach.INSTANCE.getEnabled()) {
+            cir.setReturnValue(ModuleReach.INSTANCE.getBlockReach());
+            cir.cancel();
+        }
     }
 
 }
