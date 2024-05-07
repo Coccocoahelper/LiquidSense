@@ -19,6 +19,7 @@ import net.minecraft.entity.EntityLivingBase
 import net.minecraft.util.AxisAlignedBB
 import net.minecraft.util.BlockPos
 import net.minecraft.util.ResourceLocation
+import org.lwjgl.util.glu.Cylinder
 import org.lwjgl.opengl.GL11.*
 import org.lwjgl.opengl.GL14
 import java.awt.Color
@@ -38,28 +39,28 @@ object RenderUtils : MinecraftInstance() {
         }
 
         glNewList(DISPLAY_LISTS_2D[0], GL_COMPILE)
-        quickDrawRectNew(-7f, 2f, -4f, 3f)
-        quickDrawRectNew(4f, 2f, 7f, 3f)
-        quickDrawRectNew(-7f, 0.5f, -6f, 3f)
-        quickDrawRectNew(6f, 0.5f, 7f, 3f)
+        quickDrawRect(-7f, 2f, -4f, 3f)
+        quickDrawRect(4f, 2f, 7f, 3f)
+        quickDrawRect(-7f, 0.5f, -6f, 3f)
+        quickDrawRect(6f, 0.5f, 7f, 3f)
         glEndList()
         glNewList(DISPLAY_LISTS_2D[1], GL_COMPILE)
-        quickDrawRectNew(-7f, 3f, -4f, 3.3f)
-        quickDrawRectNew(4f, 3f, 7f, 3.3f)
-        quickDrawRectNew(-7.3f, 0.5f, -7f, 3.3f)
-        quickDrawRectNew(7f, 0.5f, 7.3f, 3.3f)
+        quickDrawRect(-7f, 3f, -4f, 3.3f)
+        quickDrawRect(4f, 3f, 7f, 3.3f)
+        quickDrawRect(-7.3f, 0.5f, -7f, 3.3f)
+        quickDrawRect(7f, 0.5f, 7.3f, 3.3f)
         glEndList()
         glNewList(DISPLAY_LISTS_2D[2], GL_COMPILE)
-        quickDrawRectNew(4f, -20f, 7f, -19f)
-        quickDrawRectNew(-7f, -20f, -4f, -19f)
-        quickDrawRectNew(6f, -20f, 7f, -17.5f)
-        quickDrawRectNew(-7f, -20f, -6f, -17.5f)
+        quickDrawRect(4f, -20f, 7f, -19f)
+        quickDrawRect(-7f, -20f, -4f, -19f)
+        quickDrawRect(6f, -20f, 7f, -17.5f)
+        quickDrawRect(-7f, -20f, -6f, -17.5f)
         glEndList()
         glNewList(DISPLAY_LISTS_2D[3], GL_COMPILE)
-        quickDrawRectNew(7f, -20f, 7.3f, -17.5f)
-        quickDrawRectNew(-7.3f, -20f, -7f, -17.5f)
-        quickDrawRectNew(4f, -20.3f, 7.3f, -20f)
-        quickDrawRectNew(-7.3f, -20.3f, -4f, -20f)
+        quickDrawRect(7f, -20f, 7.3f, -17.5f)
+        quickDrawRect(-7.3f, -20f, -7f, -17.5f)
+        quickDrawRect(4f, -20.3f, 7.3f, -20f)
+        quickDrawRect(-7.3f, -20.3f, -4f, -20f)
         glEndList()
     }
 
@@ -284,7 +285,7 @@ object RenderUtils : MinecraftInstance() {
     /**
      * Optimized version of quickDrawRect (Float)
      */
-    fun quickDrawRectNew(x: Float, y: Float, x2: Float, y2: Float) {
+    fun quickDrawRect(x: Float, y: Float, x2: Float, y2: Float) {
         val tessellator = Tessellator.getInstance()
         val worldRenderer = tessellator.worldRenderer
 
@@ -299,7 +300,7 @@ object RenderUtils : MinecraftInstance() {
     /**
      * Optimized version of quickDrawRect (Color)
      */
-    fun quickDrawRectNew2(x: Float, y: Float, x2: Float, y2: Float, color: Int) {
+    fun quickDrawRect2(x: Float, y: Float, x2: Float, y2: Float, color: Int) {
         val tessellator = Tessellator.getInstance()
         val worldrenderer = tessellator.worldRenderer
 
@@ -429,8 +430,8 @@ object RenderUtils : MinecraftInstance() {
     /**
      * Optimized version of quickDrawBorderedRect
      */
-    fun quickDrawBorderedRectNew(x: Float, y: Float, x2: Float, y2: Float, width: Float, color1: Int, color2: Int) {
-        quickDrawRectNew2(x, y, x2, y2, color2)
+    fun quickDrawBorderedRect(x: Float, y: Float, x2: Float, y2: Float, width: Float, color1: Int, color2: Int) {
+        quickDrawRect2(x, y, x2, y2, color2)
 
         val tessellator = Tessellator.getInstance()
         val worldrenderer = tessellator.worldRenderer
@@ -444,6 +445,60 @@ object RenderUtils : MinecraftInstance() {
         worldrenderer.pos(x2.toDouble(), y2.toDouble(), 0.0).endVertex()
 
         tessellator.draw()
+    }
+
+    fun cylinder(player: Entity, x: Double, y: Double, z: Double, range: Double, color: Int) {
+        glPushMatrix()
+        glDisable(2896)
+        glDisable(3553)
+        glEnable(3042)
+        glBlendFunc(770, 771)
+        glDisable(2929)
+        glEnable(2848)
+        glDepthMask(true)
+        translate(x, y, z)
+        rotate(180.0f, 90.0f, 0.0f, 2.0f)
+        rotate(180.0f, 0.0f, 90.0f, 90.0f)
+        resetColor()
+        glColor(color)
+        glBegin(2)
+        val c = Cylinder()
+        c.setDrawStyle(100011)
+        c.draw((range - 0.5).toFloat(), (range - 0.5).toFloat(), 0.0f, 1, 0)
+        glDepthMask(true)
+        glDisable(2848)
+        glEnable(2929)
+        glDisable(3042)
+        glEnable(2896)
+        glEnable(3553)
+        glPopMatrix()
+    }
+
+    fun shadow(player: Entity, x: Double, y: Double, z: Double, range: Double, color: Int) {
+        glPushMatrix()
+        glDisable(2896)
+        glDisable(3553)
+        glEnable(3042)
+        glBlendFunc(770, 771)
+        glDisable(2929)
+        glEnable(2848)
+        glDepthMask(true)
+        translate(x, y, z)
+        rotate(180.0f, 90.0f, 0.0f, 2.0f)
+        rotate(180.0f, 0.0f, 90.0f, 90.0f)
+        resetColor()
+        glColor(color)
+        glBegin(2)
+        val c = Cylinder()
+        c.setDrawStyle(100011)
+        c.draw((range - 0.45).toFloat(), (range - 0.5).toFloat(), 0.0f, 1, 0)
+        glDepthMask(true)
+        glDisable(2848)
+        glEnable(2929)
+        glDisable(3042)
+        glEnable(2896)
+        glEnable(3553)
+        glPopMatrix()
     }
 
     fun drawLoadingCircle(x: Float, y: Float) {
