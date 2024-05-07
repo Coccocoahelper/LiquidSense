@@ -20,6 +20,7 @@
 package net.ccbluex.liquidbounce.injection.mixins.minecraft.render;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.datafixers.util.Pair;
 import net.ccbluex.liquidbounce.LiquidBounce;
 import net.ccbluex.liquidbounce.event.EventManager;
 import net.ccbluex.liquidbounce.event.events.GameRenderEvent;
@@ -31,18 +32,23 @@ import net.ccbluex.liquidbounce.features.module.modules.render.ModuleFreeCam;
 import net.ccbluex.liquidbounce.features.module.modules.render.ModuleHud;
 import net.ccbluex.liquidbounce.features.module.modules.render.ModuleNoBob;
 import net.ccbluex.liquidbounce.features.module.modules.render.ModuleNoHurtCam;
+import net.ccbluex.liquidbounce.interfaces.IMixinGameRenderer;
 import net.ccbluex.liquidbounce.interfaces.PostEffectPassTextureAddition;
 import net.ccbluex.liquidbounce.render.engine.UIRenderer;
 import net.ccbluex.liquidbounce.utils.aiming.RaytracingExtensionsKt;
 import net.ccbluex.liquidbounce.utils.aiming.Rotation;
 import net.ccbluex.liquidbounce.utils.aiming.RotationManager;
+import net.fabricmc.fabric.impl.client.rendering.FabricShaderProgram;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gl.PostEffectProcessor;
+import net.minecraft.client.gl.ShaderProgram;
 import net.minecraft.client.render.Camera;
 import net.minecraft.client.render.GameRenderer;
+import net.minecraft.client.render.VertexFormats;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.resource.ResourceFactory;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.HitResult;
@@ -56,9 +62,14 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.function.Consumer;
 
 @Mixin(GameRenderer.class)
-public abstract class MixinGameRenderer {
+public abstract class MixinGameRenderer implements IMixinGameRenderer {
 
     @Shadow
     @Final
@@ -228,6 +239,30 @@ public abstract class MixinGameRenderer {
     @Inject(method = "render", at = @At(value = "RETURN"))
     private void hookRenderEventStop(float tickDelta, long startTime, boolean tick, CallbackInfo ci) {
         UIRenderer.INSTANCE.endUIOverlayDrawing();
+    }
+
+
+    public ShaderProgram bgraPositionTextureShader;
+
+    /**
+     * Register BRGA shader
+     * Code taken from FabricMC fabric-rendering-v1 for MC 1.20.1
+     */
+    @Inject(
+            method = "loadPrograms",
+            at = @At(value = "INVOKE", target = "Ljava/util/List;add(Ljava/lang/Object;)Z", remap = false, shift = At.Shift.AFTER),
+            slice = @Slice(from = @At(value = "NEW", target = "net/minecraft/client/gl/ShaderProgram", ordinal = 0)),
+            locals = LocalCapture.CAPTURE_FAILHARD
+    )
+    private void registerBgraShader(ResourceFactory factory, CallbackInfo info, List<?> shaderStages, List<Pair<ShaderProgram, Consumer<ShaderProgram>>> programs) throws IOException {
+        programs.add(new Pair<>(new FabricShaderProgram(factory, new Identifier("liquidbounce", "bgra_position_tex"), VertexFormats.POSITION_TEXTURE), program -> {
+            bgraPositionTextureShader = program;
+        }));
+    }
+
+    @Override
+    public ShaderProgram getBgraPositionTextureShader() {
+        return bgraPositionTextureShader;
     }
 
 }
