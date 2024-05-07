@@ -16,16 +16,15 @@
  * You should have received a copy of the GNU General Public License
  * along with LiquidBounce. If not, see <https://www.gnu.org/licenses/>.
  */
-package net.ccbluex.liquidbounce.features.module.modules.world.scaffold.techniques
+package net.ccbluex.liquidbounce.features.module.modules.world.scaffold.techniques.normal
 
-import net.ccbluex.liquidbounce.config.Choice
-import net.ccbluex.liquidbounce.config.ChoiceConfigurable
 import net.ccbluex.liquidbounce.config.ToggleableConfigurable
 import net.ccbluex.liquidbounce.event.events.MovementInputEvent
 import net.ccbluex.liquidbounce.event.events.PlayerAfterJumpEvent
 import net.ccbluex.liquidbounce.event.handler
 import net.ccbluex.liquidbounce.features.module.modules.render.ModuleDebug
 import net.ccbluex.liquidbounce.features.module.modules.world.scaffold.ModuleScaffold
+import net.ccbluex.liquidbounce.features.module.modules.world.scaffold.techniques.ScaffoldNormalTechnique
 import net.ccbluex.liquidbounce.utils.entity.getMovementDirectionOfInput
 import net.ccbluex.liquidbounce.utils.entity.moving
 import net.ccbluex.liquidbounce.utils.entity.sqrtSpeed
@@ -35,20 +34,17 @@ import net.ccbluex.liquidbounce.utils.movement.DirectionalInput
 import kotlin.math.round
 
 /**
- * Telly technique
+ * Telly feature
  *
- * This technique is based on the telly technique and means that the player will jump when moving.
+ * This is based on the telly technique and means that the player will jump when moving.
  * That allows for a faster scaffold.
  * Depending on the SameY setting, we might scaffold upwards.
  *
  * @see ModuleScaffold
  */
-object ScaffoldTellyTechnique : Choice("Telly") {
+object ScaffoldTellyFeature : ToggleableConfigurable(ScaffoldNormalTechnique, "Telly", false) {
 
-    override val parent: ChoiceConfigurable<Choice>
-        get() = ModuleScaffold.technique
-
-    object StrafeTelly : ToggleableConfigurable(ModuleScaffold, "Strafe", false) {
+    object StrafeTelly : ToggleableConfigurable(ScaffoldTellyFeature, "Strafe", false) {
 
         /**
          * Allows to adjust the speed of the strafe.
