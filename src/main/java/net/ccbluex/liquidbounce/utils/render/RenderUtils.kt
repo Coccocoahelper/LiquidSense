@@ -638,7 +638,7 @@ object RenderUtils : MinecraftInstance() {
     /**
      * Optimized version of drawRect (Float)
      */
-    fun drawRect2(x1: Float, y1: Float, x2: Float, y2: Float, color: Color) {
+    fun drawRectNew2(x1: Float, y1: Float, x2: Float, y2: Float, color: Color) {
         val red = color.red.toFloat() / 255f
         val green = color.green.toFloat() / 255f
         val blue = color.blue.toFloat() / 255f
