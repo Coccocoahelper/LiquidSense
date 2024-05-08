@@ -28,9 +28,9 @@ public class MixinBlockLiquid {
 
     @Inject(method = "modifyAcceleration", at = @At("HEAD"), cancellable = true)
     private void onModifyAcceleration(CallbackInfoReturnable<Vec3> callbackInfoReturnable) {
-        final NoSlowDown NoSlowDown = NoSlowDown.INSTANCE;
+        final noSlowDown NoSlowDown = NoSlowDown.INSTANCE;
 
-        if (NoSlowDown.handleEvents() && NoSlowDown.getLiquidPush()) {
+        if (noSlowDown.handleEvents() && noSlowDown.getLiquidPush()) {
             callbackInfoReturnable.setReturnValue(new Vec3(0, 0, 0));
         }
     }
