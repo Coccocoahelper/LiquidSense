@@ -9,7 +9,8 @@ import net.ccbluex.liquidbounce.ui.client.hud.element.ElementInfo
 import net.ccbluex.liquidbounce.ui.client.hud.element.Side
 import net.ccbluex.liquidbounce.ui.font.Fonts
 import net.ccbluex.liquidbounce.utils.GuiPlayerTabOverlay
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.RenderUtils.drawBorderedRect
+import net.ccbluex.liquidbounce.utils.render.RenderUtils.drawRect
 import net.ccbluex.liquidbounce.utils.render.shader.shaders.RainbowShader
 import net.ccbluex.liquidbounce.value.FloatValue
 import net.ccbluex.liquidbounce.value.IntegerValue
@@ -29,13 +30,13 @@ import kotlin.math.atan
 @ElementInfo(name = "TargetHud")
 class TargetHud(x: Double = 40.0, y: Double = 100.0 , side: Side = Side(Side.Horizontal.MIDDLE, Side.Vertical.DOWN)) : Element(x, y ,1.0f,side) {
     private val Mode = ListValue("Mode", arrayOf("Head", "Model"), "Head")
-    private val rainbowX = FloatValue("Rainbow-X", -1000F, -2000F, 2000F)
-    private val rainbowY = FloatValue("Rainbow-Y", -1000F, -2000F, 2000F)
-    private val backgroundColorModeValue = ListValue("Background-Color", arrayOf("Custom","Rainbow"), "Custom")
-    private val backgroundColorRedValue = IntegerValue("Background-R", 0, 0, 255)
-    private val backgroundColorGreenValue = IntegerValue("Background-G", 0, 0, 255)
-    private val backgroundColorBlueValue = IntegerValue("Background-B", 0, 0, 255)
-    private val backgroundColorAlphaValue = IntegerValue("Background-Alpha", 0, 0, 255)
+    private val rainbowX = FloatValue("Rainbow-X", -1000F, -2000F..2000F)
+    private val rainbowY = FloatValue("Rainbow-Y", -1000F, -2000F..2000F)
+    private val backgroundColorModeValue = ListValue("Background-Color", arrayOf("Custom", "Rainbow"), "Custom")
+    private val backgroundColorRedValue = IntegerValue("Background-R", 0, 0..255)
+    private val backgroundColorGreenValue = IntegerValue("Background-G", 0, 0..255)
+    private val backgroundColorBlueValue = IntegerValue("Background-B", 0, 0..255)
+    private val backgroundColorAlphaValue = IntegerValue("Background-Alpha", 0, 0..255)
 
 
     private var modules = emptyList<Module>()
@@ -56,9 +57,9 @@ class TargetHud(x: Double = 40.0, y: Double = 100.0 , side: Side = Side(Side.Hor
         var Distance = "Dist>>"
         var h = (Aura.target?.maxHealth?.minus(Aura.target?.health!!))?.times(5)
 
-        if (Aura.handleEvents() && target != null) {
-            RenderUtils.drawBorderedRect(0f, 0f, width, 43f, 3f ,  Color(0,0,0,150).rgb , 0)
-            RenderUtils.drawRect(0f, 0f, width, 43f, Color(15, 15, 15).rgb)
+        if (Aura.handleEvents() && Aura.target != null) {
+            drawBorderedRect(0f, 0f, width, 43f, 3f ,  Color(0,0,0,150).rgb , 0)
+            drawRect(0f, 0f, width, 43f, Color(15, 15, 15).rgb)
             //
             Fonts.minecraftFont.drawString(Name, 37.5f, Y + 2, Color(255, 255, 255).rgb, false)
             Y += 24
@@ -77,7 +78,7 @@ class TargetHud(x: Double = 40.0, y: Double = 100.0 , side: Side = Side(Side.Hor
                 var x2 = if(Aura.target?.health!! <= 20) 99F * Aura.target?.maxHealth!! / 20 - h.toFloat() else 99f
 
                 RainbowShader.begin(backgroundRectRainbow, if (rainbowX.get() == 0.0F) 0.0F else 1.0F / rainbowX.get(), if (rainbowY.get() == 0.0F) 0.0F else 1.0F / rainbowY.get(), System.currentTimeMillis() % 10000 / 100000F).use {
-                    RenderUtils.drawRect(1f, 38f, x2, 41f, when {
+                    drawRect(1f, 38f, x2, 41f, when {
                         backgroundRectRainbow -> 0xFF shl 24
                         else -> backgroundCustomColor
                     })
@@ -107,7 +108,7 @@ class TargetHud(x: Double = 40.0, y: Double = 100.0 , side: Side = Side(Side.Hor
         GlStateManager.translate(75.5f,-10f,0f)
         fontRenderer.drawString(Distance, -32f , 27f, Color(255, 255, 255).rgb, false)
         drawBox(-0.5f, Y + 0.5f, 18.5f, Y + 5.25f, 0.5f, Color(24,27,30).rgb, Color(0,0,0).rgb)
-        RenderUtils.drawRect(0f, Y + 1f, Distances, 31.72f, Color(170, 100, 50).rgb)
+        drawRect(0f, Y + 1f, Distances, 31.72f, Color(170, 100, 50).rgb)
         GlStateManager.popMatrix()
     }
 
@@ -116,7 +117,7 @@ class TargetHud(x: Double = 40.0, y: Double = 100.0 , side: Side = Side(Side.Hor
         Y == 26.5f
         GlStateManager.translate(75.5f, 0f, 0f)
         drawBox(-0.5f,Y + 2f, 18.5f, Y + 6.75f, 0.5f , Color(24, 27, 30).rgb, Color(0, 0, 0).rgb)
-        RenderUtils.drawRect(0.0f, Y + 2.5f, (aura.target?.totalArmorValue!!) * 0.9f , 33.2f, Color(50, 100, 200).rgb)
+        drawRect(0.0f, Y + 2.5f, (aura.target?.totalArmorValue!!) * 0.9f , 33.2f, Color(50, 100, 200).rgb)
         GlStateManager.popMatrix()
     }
 
@@ -149,15 +150,15 @@ class TargetHud(x: Double = 40.0, y: Double = 100.0 , side: Side = Side(Side.Hor
 
     private fun drawBox(x: Float, y: Float, x2: Float, y2: Float, size: Float, color: Int, color2: Int) {
         // Normal
-        RenderUtils.drawRect(x, y, x2, y2, color)
+        drawRect(x, y, x2, y2, color)
         // Up
-        RenderUtils.drawRect(x, y, x2, y + size, color2)
+        drawRect(x, y, x2, y + size, color2)
         //Down
-        RenderUtils.drawRect(x, y2 - size, x2, y2, color2)
+        drawRect(x, y2 - size, x2, y2, color2)
         //left
-        RenderUtils.drawRect(x, y, x + size, y2, color2)
+        drawRect(x, y, x + size, y2, color2)
         //right
-        RenderUtils.drawRect(x2 - size, y, x2, y2, color2)
+        drawRect(x2 - size, y, x2, y2, color2)
     }
 
 

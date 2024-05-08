@@ -36,6 +36,7 @@ object HUD : MinecraftInstance() {
           Text::class.java,
           ScoreboardElement::class.java,
           Target::class.java,
+          TargetHud::class.java,
           Radar::class.java,
           SpeedGraph::class.java,
           Cooldown::class.java,

@@ -375,7 +375,7 @@ object RenderUtils : MinecraftInstance() {
     }
 
     fun drawBorderedRect(x: Int, y: Int, x2: Int, y2: Int, width: Int, borderColor: Int, rectColor: Int) {
-        drawRectInt(x, y, x2, y2, rectColor)
+        drawRectNewInt(x, y, x2, y2, rectColor)
         drawBorder(x, y, x2, y2, width, borderColor)
     }
 
@@ -667,7 +667,7 @@ object RenderUtils : MinecraftInstance() {
     /**
      * Optimized version of drawRect (Int)
      */
-    fun drawRectInt(x1: Int, y1: Int, x2: Int, y2: Int, color: Int) {
+    fun drawRectNewInt(x1: Int, y1: Int, x2: Int, y2: Int, color: Int) {
         val alpha = ((color shr 24) and 0xFF) / 255f
         val red = ((color shr 16) and 0xFF) / 255f
         val green = ((color shr 8) and 0xFF) / 255f
@@ -883,7 +883,7 @@ object RenderUtils : MinecraftInstance() {
         setGlCap(GL_BLEND, true)
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
         val width = Fonts.font35.getStringWidth(string) / 2
-        drawRectInt(-width - 1, -1, width + 1, Fonts.font35.FONT_HEIGHT, Int.MIN_VALUE)
+        drawRectNewInt(-width - 1, -1, width + 1, Fonts.font35.FONT_HEIGHT, Int.MIN_VALUE)
         Fonts.font35.drawString(string, -width.toFloat(), 1.5f, Color.WHITE.rgb, true)
         resetCaps()
         glColor4f(1f, 1f, 1f, 1f)
