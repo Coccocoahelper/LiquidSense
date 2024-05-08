@@ -370,7 +370,7 @@ object RenderUtils : MinecraftInstance() {
     fun drawRect(x: Float, y: Float, x2: Float, y2: Float, color: Color) = drawRectNew(x, y, x2, y2, color.rgb)
 
     fun drawBorderedRect(x: Float, y: Float, x2: Float, y2: Float, width: Float, color1: Int, color2: Int) {
-        drawRect(x, y, x2, y2, color2)
+        drawRectNew(x, y, x2, y2, color2)
         drawBorder(x, y, x2, y2, width, color1)
     }
 
