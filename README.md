@@ -1,5 +1,5 @@
 # LiquidSense
-A free mixin-based injection hacked-client for Minecraft using Minecraft Forge, supporting version 1.8.9; also forked off of LiquidBounce
+A gratis & libre mixin-based injection hacked-client for Minecraft using Minecraft Forge, supporting version 1.8.9; also forked off of LiquidBounce
 
 Website: https://liquidbounce.net \
 Forum: https://forums.ccbluex.net \
