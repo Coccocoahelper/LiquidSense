@@ -254,7 +254,7 @@
 
         "module.noSlotSet.description": "防止服务器更改你的物品栏。",
         
-        "module.NoSlowDown.description": "消除灵魂沙和使用物品造成的减速效果。",
+        "module.noSlow.description": "消除灵魂沙和使用物品造成的减速效果。",
         
         "module.NoSlowBreak.description": "消除负面影响造成的破坏减速。",
         

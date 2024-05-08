@@ -6,7 +6,7 @@
 package net.ccbluex.liquidbounce.injection.forge.mixins.item;
 
 import net.ccbluex.liquidbounce.features.module.modules.combat.Aura;
-import net.ccbluex.liquidbounce.features.module.modules.movement.NoSlowDown;
+import net.ccbluex.liquidbounce.features.module.modules.movement.NoSlow;
 import net.ccbluex.liquidbounce.features.module.modules.render.Animation;
 import net.ccbluex.liquidbounce.features.module.modules.render.Animations;
 import net.ccbluex.liquidbounce.features.module.modules.render.AntiBlind;
@@ -96,7 +96,7 @@ public abstract class MixinItemRenderer {
         pushMatrix();
 
         if (itemToRender != null) {
-            boolean isForceBlocking = (itemToRender.getItem() instanceof ItemSword && Aura.INSTANCE.getRenderBlocking()) || NoSlowDown.INSTANCE.isUNCPBlocking();
+            boolean isForceBlocking = (itemToRender.getItem() instanceof ItemSword && Aura.INSTANCE.getRenderBlocking()) || NoSlow.INSTANCE.isUNCPBlocking();
 
             if (itemToRender.getItem() instanceof ItemMap) {
                 renderItemMap(abstractclientplayer, f2, f, f1);

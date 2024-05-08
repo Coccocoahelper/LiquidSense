@@ -238,7 +238,7 @@
 
         "module.noSlotSet.description": "Previne que o servidor mude o teu slot de hotbar.",
 
-        "module.NoSlowDown.description": "UNTRANSLATED: Cancels slowness effects caused by Soul Sand and using items.",
+        "module.noSlow.description": "UNTRANSLATED: Cancels slowness effects caused by Soul Sand and using items.",
         
         "module.NoSlowBreak.description": "UNTRANSLATED: Automatically adjusts breaking speed when using modules that influence it.",
         

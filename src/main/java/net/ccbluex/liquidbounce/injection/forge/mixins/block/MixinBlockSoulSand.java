@@ -5,7 +5,7 @@
  */
 package net.ccbluex.liquidbounce.injection.forge.mixins.block;
 
-import net.ccbluex.liquidbounce.features.module.modules.movement.NoSlowDown;
+import net.ccbluex.liquidbounce.features.module.modules.movement.NoSlow;
 import net.minecraft.block.BlockSoulSand;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -20,9 +20,9 @@ public class MixinBlockSoulSand {
 
     @Inject(method = "onEntityCollidedWithBlock", at = @At("HEAD"), cancellable = true)
     private void onEntityCollidedWithBlock(CallbackInfo callbackInfo) {
-        final NoSlowDown noSlowDown = NoSlowDown.INSTANCE;
+        final NoSlow noSlow = NoSlow.INSTANCE;
 
-        if (noSlowDown.handleEvents() && noSlowDown.getSoulsand())
+        if (noSlow.handleEvents() && noSlow.getSoulsand())
             callbackInfo.cancel();
     }
 }

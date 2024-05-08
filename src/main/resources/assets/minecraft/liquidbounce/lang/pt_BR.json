@@ -239,7 +239,7 @@
 
         "module.noSlotSet.description": "Impede que o servidor altere seu slot.",
 
-        "module.NoSlowDown.description": "Cancela os efeitos de lentidão causados Por Areia da Alma e uso de itens.",
+        "module.noSlow.description": "Cancela os efeitos de lentidão causados Por Areia da Alma e uso de itens.",
 
         "module.NoSlowBreak.description": "Remove o atraso de quebrar blocos.",
 

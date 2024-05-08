@@ -255,7 +255,7 @@
         
         "module.noScoreboard.description": "Disables the scoreboard.",
         
-        "module.NoSlowDown.description": "Cancels slowness effects caused by Soul Sand and using items.",
+        "module.noSlow.description": "Cancels slowness effects caused by Soul Sand and using items.",
         
         "module.NoSlowBreak.description": "Automatically adjusts breaking speed when using modules that influence it.",
         

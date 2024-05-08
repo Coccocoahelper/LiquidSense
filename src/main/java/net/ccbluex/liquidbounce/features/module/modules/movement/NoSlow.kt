@@ -21,7 +21,7 @@ import net.minecraft.network.play.client.C08PacketPlayerBlockPlacement
 import net.minecraft.util.BlockPos
 import net.minecraft.util.EnumFacing
 
-object NoSlowDown : Module("NoSlowDownDown", ModuleCategory.MOVEMENT, gameDetecting = false, hideModule = false) {
+object NoSlow : Module("NoSlowDownDown", ModuleCategory.MOVEMENT, gameDetecting = false, hideModule = false) {
 
     private val swordMode by ListValue("SwordMode", arrayOf("None", "NCP", "UpdatedNCP", "AAC5", "SwitchItem"), "None")
 
