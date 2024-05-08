@@ -240,7 +240,7 @@
 
         "module.noSlow.description": "UNTRANSLATED: Cancels slowness effects caused by Soul Sand and using items.",
         
-        "module.NoSlowBreak.description": "UNTRANSLATED: Automatically adjusts breaking speed when using modules that influence it.",
+        "module.noSlowBreak.description": "UNTRANSLATED: Automatically adjusts breaking speed when using modules that influence it.",
         
         "module.noSwing.description": "UNTRANSLATED: Disabled swing effect when hitting an entity/mining a block.",
         

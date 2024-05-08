@@ -255,7 +255,7 @@
            
             "module.noSlow.description": "消除靈魂沙和使用物品造成的減速效果。",
            
-            "module.NoSlowBreak.description": "消除負面影響造成的破壞減速。",
+            "module.noSlowBreak.description": "消除負面影響造成的破壞減速。",
            
             "module.noSwing.description": "停用擊打實體/挖方塊時的擺臂動作。",
            

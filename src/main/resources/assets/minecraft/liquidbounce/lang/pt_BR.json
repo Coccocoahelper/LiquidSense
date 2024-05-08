@@ -241,7 +241,7 @@
 
         "module.noSlow.description": "Cancela os efeitos de lentidão causados Por Areia da Alma e uso de itens.",
 
-        "module.NoSlowBreak.description": "Remove o atraso de quebrar blocos.",
+        "module.noSlowBreak.description": "Remove o atraso de quebrar blocos.",
 
         "module.noSwing.description": "Desativa o efeito de balanço ao atingir uma entidade/minerar um bloco.",
 
