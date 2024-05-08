@@ -21,6 +21,7 @@ import net.minecraft.util.BlockPos
 import net.minecraft.util.ResourceLocation
 import org.lwjgl.opengl.GL11.*
 import org.lwjgl.opengl.GL14
+import org.lwjgl.util.glu.Cylinder
 import java.awt.Color
 import kotlin.math.cos
 import kotlin.math.max
@@ -366,15 +367,15 @@ object RenderUtils : MinecraftInstance() {
         tessellator.draw()
     }
 
-    fun drawRect(x: Float, y: Float, x2: Float, y2: Float, color: Color) = drawRectNew(x, y, x2, y2, color.rgb)
+    fun drawRect(x: Float, y: Float, x2: Float, y2: Float, color: Color) = drawRect(x, y, x2, y2, color.rgb)
 
     fun drawBorderedRect(x: Float, y: Float, x2: Float, y2: Float, width: Float, color1: Int, color2: Int) {
-        drawRectNew(x, y, x2, y2, color2)
+        drawRect(x, y, x2, y2, color2)
         drawBorder(x, y, x2, y2, width, color1)
     }
 
     fun drawBorderedRect(x: Int, y: Int, x2: Int, y2: Int, width: Int, borderColor: Int, rectColor: Int) {
-        drawRectNewInt(x, y, x2, y2, rectColor)
+        drawRectInt(x, y, x2, y2, rectColor)
         drawBorder(x, y, x2, y2, width, borderColor)
     }
 
@@ -608,7 +609,7 @@ object RenderUtils : MinecraftInstance() {
     /**
      * Optimized version of drawRect (Float)
      */
-    fun drawRectNew(x1: Float, y1: Float, x2: Float, y2: Float, color: Int) {
+    fun drawRect(x1: Float, y1: Float, x2: Float, y2: Float, color: Int) {
         val alpha = ((color shr 24) and 0xFF) / 255f
         val red = ((color shr 16) and 0xFF) / 255f
         val green = ((color shr 8) and 0xFF) / 255f
@@ -637,7 +638,7 @@ object RenderUtils : MinecraftInstance() {
     /**
      * Optimized version of drawRect (Float)
      */
-    fun drawRectNew2(x1: Float, y1: Float, x2: Float, y2: Float, color: Color) {
+    fun drawRect2(x1: Float, y1: Float, x2: Float, y2: Float, color: Color) {
         val red = color.red.toFloat() / 255f
         val green = color.green.toFloat() / 255f
         val blue = color.blue.toFloat() / 255f
@@ -666,7 +667,7 @@ object RenderUtils : MinecraftInstance() {
     /**
      * Optimized version of drawRect (Int)
      */
-    fun drawRectNewInt(x1: Int, y1: Int, x2: Int, y2: Int, color: Int) {
+    fun drawRectInt(x1: Int, y1: Int, x2: Int, y2: Int, color: Int) {
         val alpha = ((color shr 24) and 0xFF) / 255f
         val red = ((color shr 16) and 0xFF) / 255f
         val green = ((color shr 8) and 0xFF) / 255f
@@ -882,7 +883,7 @@ object RenderUtils : MinecraftInstance() {
         setGlCap(GL_BLEND, true)
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
         val width = Fonts.font35.getStringWidth(string) / 2
-        drawRectNewInt(-width - 1, -1, width + 1, Fonts.font35.FONT_HEIGHT, Int.MIN_VALUE)
+        drawRectInt(-width - 1, -1, width + 1, Fonts.font35.FONT_HEIGHT, Int.MIN_VALUE)
         Fonts.font35.drawString(string, -width.toFloat(), 1.5f, Color.WHITE.rgb, true)
         resetCaps()
         glColor4f(1f, 1f, 1f, 1f)

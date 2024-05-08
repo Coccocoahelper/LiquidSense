@@ -14,7 +14,7 @@ import net.ccbluex.liquidbounce.ui.font.Fonts
 import net.ccbluex.liquidbounce.utils.EntityUtils.getHealth
 import net.ccbluex.liquidbounce.utils.extensions.getDistanceToEntityBox
 import net.ccbluex.liquidbounce.utils.render.RenderUtils.deltaTime
-import net.ccbluex.liquidbounce.utils.render.RenderUtils.drawRectNew
+import net.ccbluex.liquidbounce.utils.render.RenderUtils.drawRect
 import net.ccbluex.liquidbounce.utils.render.RenderUtils.drawRoundedBorderRect
 import net.ccbluex.liquidbounce.utils.render.RenderUtils.drawScaledCustomSizeModalRect
 import net.ccbluex.liquidbounce.utils.render.shader.shaders.RainbowShader
@@ -120,7 +120,7 @@ class Target : Element() {
 
             // Health bar
             val healthBarWidth = (targetHealth / target.maxHealth) * (width - 6f)
-            drawRectNew(3F, 34F, 3f + healthBarWidth, 36F, healthColor.rgb)
+            drawRect(3F, 34F, 3f + healthBarWidth, 36F, healthColor.rgb)
 
             // Easing health update
             easingHealth += ((targetHealth - easingHealth) / 2f.pow(10f - fadeSpeed)) * deltaTime
@@ -128,12 +128,12 @@ class Target : Element() {
 
             // Heal animation, only animate from the right side
             if (easingHealth < targetHealth) {
-                drawRectNew(3f + easingHealthWidth, 34F, 3f + healthBarWidth, 36F, Color(44, 201, 144).rgb)
+                drawRect(3f + easingHealthWidth, 34F, 3f + healthBarWidth, 36F, Color(44, 201, 144).rgb)
             }
 
             // Damage animation, only animate from the right side
             if (easingHealth > targetHealth) {
-                drawRectNew(3f + healthBarWidth, 34F, 3f + easingHealthWidth, 36F, Color(252, 185, 65).rgb)
+                drawRect(3f + healthBarWidth, 34F, 3f + easingHealthWidth, 36F, Color(252, 185, 65).rgb)
             }
 
             target.name?.let {
