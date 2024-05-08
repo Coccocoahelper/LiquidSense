@@ -99,13 +99,13 @@ public abstract class MixinBlock {
         float f = callbackInfo.getReturnValue();
 
         // NoSlowBreak
-        final NoSlowBreak noSlowBreak = NoSlowBreak.INSTANCE;
-        if (noSlowBreak.handleEvents()) {
-            if (noSlowBreak.getWater() && playerIn.isInsideOfMaterial(Material.water) && !EnchantmentHelper.getAquaAffinityModifier(playerIn)) {
+        final NoSlowBreak NoSlowBreak = NoSlowBreak.INSTANCE;
+        if (NoSlowBreak.handleEvents()) {
+            if (NoSlowBreak.getWater() && playerIn.isInsideOfMaterial(Material.water) && !EnchantmentHelper.getAquaAffinityModifier(playerIn)) {
                 f *= 5f;
             }
 
-            if (noSlowBreak.getAir() && !playerIn.onGround) {
+            if (NoSlowBreak.getAir() && !playerIn.onGround) {
                 f *= 5f;
             }
         } else if (playerIn.onGround) { // NoGround

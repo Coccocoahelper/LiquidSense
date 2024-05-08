@@ -114,7 +114,7 @@ object Sprint : Module("Sprint", ModuleCategory.MOVEMENT, gameDetecting = false,
             return true
         }
 
-        if ((usingItem || isLegitModeActive) && !NoSlow.handleEvents() && isUsingItem) {
+        if ((usingItem || isLegitModeActive) && !NoSlowDown.handleEvents() && isUsingItem) {
             return true
         }
 
@@ -130,7 +130,7 @@ object Sprint : Module("Sprint", ModuleCategory.MOVEMENT, gameDetecting = false,
             return false
         }
 
-        val threshold = if ((!usingItem || NoSlow.handleEvents()) && isUsingItem) 0.2 else 0.8
+        val threshold = if ((!usingItem || NoSlowDown.handleEvents()) && isUsingItem) 0.2 else 0.8
         val playerForwardInput = player.movementInput.moveForward
 
         if (!checkServerSide) {

@@ -5,8 +5,8 @@
  */
 package net.ccbluex.liquidbounce.injection.forge.mixins.render;
 
-import net.ccbluex.liquidbounce.features.module.modules.combat.KillAura;
-import net.ccbluex.liquidbounce.features.module.modules.movement.NoSlow;
+import net.ccbluex.liquidbounce.features.module.modules.combat.Aura;
+import net.ccbluex.liquidbounce.features.module.modules.movement.NoSlowDown;
 import net.minecraft.block.Block;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.model.ModelBiped;
@@ -60,7 +60,7 @@ public class MixinLayerHeldItem {
             final UUID uuid = entitylivingbaseIn.getUniqueID();
             final EntityPlayer entityplayer = mc.theWorld.getPlayerEntityByUUID(uuid);
 
-            if (entityplayer != null && (entityplayer.isBlocking() || entityplayer instanceof EntityPlayerSP && ((itemstack.getItem() instanceof ItemSword && KillAura.INSTANCE.getRenderBlocking()) || NoSlow.INSTANCE.isUNCPBlocking()))) {
+            if (entityplayer != null && (entityplayer.isBlocking() || entityplayer instanceof EntityPlayerSP && ((itemstack.getItem() instanceof ItemSword && Aura.INSTANCE.getRenderBlocking()) || NoSlowDown.INSTANCE.isUNCPBlocking()))) {
                 if (entitylivingbaseIn.isSneaking()) {
                     ((ModelBiped) livingEntityRenderer.getMainModel()).postRenderArm(0.0325F);
                     translate(-0.58F, 0.3F, -0.2F);

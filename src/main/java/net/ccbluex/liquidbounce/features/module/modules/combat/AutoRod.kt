@@ -87,7 +87,7 @@ object AutoRod : Module("AutoRod", ModuleCategory.COMBAT, hideModule = false) {
 
                 // Check whether player is using items/blocking.
                 if (!onUsingItem) {
-                    if (mc.thePlayer?.itemInUse?.item != Items.fishing_rod && (mc.thePlayer?.isUsingItem == true || KillAura.blockStatus)) {
+                    if (mc.thePlayer?.itemInUse?.item != Items.fishing_rod && (mc.thePlayer?.isUsingItem == true || Aura.blockStatus)) {
                         return
                     }
                 }

@@ -43,7 +43,7 @@
 
         "module.ignite.description": "Автоматически поджигает врагов.",
 
-        "module.killAura.description": "Автоматически атакует врагов вокруг.",
+        "module.Aura.description": "Автоматически атакует врагов вокруг.",
 
         "module.noFriends.description": "Позволяет атаковать друзей.",
 
@@ -77,7 +77,7 @@
         
         "module.antiBlind.description": "Убирает эффект слепоты.",
         
-        "module.antiBot.description": "KillAura не будет атаковать Античит ботов.",
+        "module.antiBot.description": "Aura не будет атаковать Античит ботов.",
         
         "module.antiCactus.description": "Отключает урон от кактусов.",
         
@@ -243,9 +243,9 @@
 
         "module.noSlotSet.description": "Не даёт серверу менять ваш слот.",
         
-        "module.noSlow.description": "Убирает эффекты замедления, вызванные песком души и использованием предметов.",
+        "module.NoSlowDown.description": "Убирает эффекты замедления, вызванные песком души и использованием предметов.",
         
-        "module.noSlowBreak.description": "Убирает эффекты замедления скорости ломания блоков.",
+        "module.NoSlowBreak.description": "Убирает эффекты замедления скорости ломания блоков.",
         
         "module.noSwing.description": "Откоючает анимацию рук при ударах, ломании.",
         
@@ -311,7 +311,7 @@
         
         "module.tNTESP.description": "Позволяет видеть активированный TNT сквозь блоки.",
         
-        "module.teams.description": "Не даёт Killaura атаковать тиммейтов.",
+        "module.teams.description": "Не даёт Aura атаковать тиммейтов.",
         
         "module.teleport.description": "Позволяет недалеко телепортироваться.",
 

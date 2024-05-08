@@ -43,7 +43,7 @@
 
         "module.ignite.description": "Автоматично подпалва цели около вас.",
 
-        "module.killAura.description": "Автоматично атакува цели около вас.",
+        "module.Aura.description": "Автоматично атакува цели около вас.",
 
         "module.noFriends.description": "Позволява ви да атакувате приятели.",
 
@@ -77,7 +77,7 @@
         
         "module.antiBlind.description": "Отменя ефекта на слепотата (blindness) .",
         
-        "module.antiBot.description": "Предотвратява KillAura да атакува AntiCheat ботове.",
+        "module.antiBot.description": "Предотвратява Aura да атакува AntiCheat ботове.",
         
         "module.antiCactus.description": "Предотвратява кактусите да ви навредят.",
         
@@ -243,9 +243,9 @@
 
         "module.noSlotSet.description": "Предотвратява сървъра да променя слотовете ви.",
         
-        "module.noSlow.description": "Отменя ефектите на бавността, причинени от пясък на душите и използване на предмети.",
+        "module.NoSlowDown.description": "Отменя ефектите на бавността, причинени от пясък на душите и използване на предмети.",
         
-        "module.noSlowBreak.description": "Автоматично регулира скоростта на счупване при използване на модули, които влияят върху нея.",
+        "module.NoSlowBreak.description": "Автоматично регулира скоростта на счупване при използване на модули, които влияят върху нея.",
         
         "module.noSwing.description": "Ефектът на люлеенето с деактивиране при удряне на образувание/добив на блок.",
         
@@ -311,7 +311,7 @@
         
         "module.tNTESP.description": "Позволява ви да виждате запалени TNT блокове през стени.",
         
-        "module.teams.description": "Предотвратява Killaura да атакува съотборници от екипа.",
+        "module.teams.description": "Предотвратява Aura да атакува съотборници от екипа.",
         
         "module.teleport.description": "Ви позволява да се телепортирате наоколо.",
 

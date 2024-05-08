@@ -44,7 +44,7 @@
 
         "module.ignite.description": "Automaticamente mete os teus alvos á volta de ti em fogo.",
 
-        "module.killAura.description": "Automaticamente ataca alvos á volta de ti.",
+        "module.Aura.description": "Automaticamente ataca alvos á volta de ti.",
 
         "module.noFriends.description": "Permite que tu ataques amigos.",
 
@@ -76,7 +76,7 @@
         
         "module.antiBlind.description": "Cancela efeitos de cegueira.",
         
-        "module.antiBot.description": "Prevém o KillAura de atacar bots dos AntiCheats.",
+        "module.antiBot.description": "Prevém o Aura de atacar bots dos AntiCheats.",
         
         "module.antiCactus.description": "Prevém cactos de te magoar.",
         
@@ -238,9 +238,9 @@
 
         "module.noSlotSet.description": "Previne que o servidor mude o teu slot de hotbar.",
 
-        "module.noSlow.description": "UNTRANSLATED: Cancels slowness effects caused by Soul Sand and using items.",
+        "module.NoSlowDown.description": "UNTRANSLATED: Cancels slowness effects caused by Soul Sand and using items.",
         
-        "module.noSlowBreak.description": "UNTRANSLATED: Automatically adjusts breaking speed when using modules that influence it.",
+        "module.NoSlowBreak.description": "UNTRANSLATED: Automatically adjusts breaking speed when using modules that influence it.",
         
         "module.noSwing.description": "UNTRANSLATED: Disabled swing effect when hitting an entity/mining a block.",
         
@@ -304,7 +304,7 @@
         
         "module.tNTESP.description": "UNTRANSLATED: Allows you to see ignited TNT blocks through walls.",
         
-        "module.teams.description": "Evita o KillAura de atacar membros da equipa.",
+        "module.teams.description": "Evita o Aura de atacar membros da equipa.",
         
         "module.teleport.description": "Permite que tu teleportes.",
 

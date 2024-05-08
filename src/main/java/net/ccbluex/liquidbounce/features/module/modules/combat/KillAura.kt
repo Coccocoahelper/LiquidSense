@@ -76,7 +76,7 @@ import org.lwjgl.input.Keyboard
 import java.awt.Color
 import kotlin.math.max
 
-object KillAura : Module("KillAura", ModuleCategory.COMBAT, Keyboard.KEY_R, hideModule = false) {
+object Aura : Module("Aura", ModuleCategory.COMBAT, Keyboard.KEY_R, hideModule = false) {
     /**
      * OPTIONS
      */
@@ -185,7 +185,7 @@ object KillAura : Module("KillAura", ModuleCategory.COMBAT, Keyboard.KEY_R, hide
     private var blockRange by object : FloatValue("BlockRange", range, 1f..8f) {
         override fun isSupported() = autoBlock != "Off" && smartAutoBlock
 
-        override fun onChange(oldValue: Float, newValue: Float) = newValue.coerceAtMost(this@KillAura.range)
+        override fun onChange(oldValue: Float, newValue: Float) = newValue.coerceAtMost(this@Aura.range)
     }
 
     // Don't block when you can't get damaged
@@ -769,7 +769,7 @@ object KillAura : Module("KillAura", ModuleCategory.COMBAT, Keyboard.KEY_R, hide
     }
 
     /**
-     * Update killaura rotations to enemy
+     * Update Aura rotations to enemy
      */
     private fun updateRotations(entity: Entity): Boolean {
         val player = mc.thePlayer ?: return false

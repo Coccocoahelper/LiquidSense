@@ -45,7 +45,7 @@
    
             "module.ignite.description": "自動在周圍的目標腳下點火。",
    
-            "module.killAura.description": "自動攻擊周圍的目標。",
+            "module.Aura.description": "自動攻擊周圍的目標。",
    
             "module.noFriends.description": "忽略朋友功能。",
    
@@ -253,9 +253,9 @@
    
             "module.noSlotSet.description": "防止伺服器更改你的物品欄。",
            
-            "module.noSlow.description": "消除靈魂沙和使用物品造成的減速效果。",
+            "module.NoSlowDown.description": "消除靈魂沙和使用物品造成的減速效果。",
            
-            "module.noSlowBreak.description": "消除負面影響造成的破壞減速。",
+            "module.NoSlowBreak.description": "消除負面影響造成的破壞減速。",
            
             "module.noSwing.description": "停用擊打實體/挖方塊時的擺臂動作。",
            

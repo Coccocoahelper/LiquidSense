@@ -1,7 +1,7 @@
 package net.ccbluex.liquidbounce.injection.forge.mixins.render;
 
-import net.ccbluex.liquidbounce.features.module.modules.combat.KillAura;
-import net.ccbluex.liquidbounce.features.module.modules.movement.NoSlow;
+import net.ccbluex.liquidbounce.features.module.modules.combat.Aura;
+import net.ccbluex.liquidbounce.features.module.modules.movement.NoSlowDown;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.model.ModelPlayer;
@@ -47,7 +47,7 @@ public abstract class MixinRenderPlayer {
                 modelplayer.heldItemRight = 0;
             } else {
                 modelplayer.heldItemRight = 1;
-                boolean isForceBlocking = p_setModelVisibilities_1_ instanceof EntityPlayerSP && ((itemstack.getItem() instanceof ItemSword && KillAura.INSTANCE.getRenderBlocking()) || NoSlow.INSTANCE.isUNCPBlocking());
+                boolean isForceBlocking = p_setModelVisibilities_1_ instanceof EntityPlayerSP && ((itemstack.getItem() instanceof ItemSword && Aura.INSTANCE.getRenderBlocking()) || NoSlowDown.INSTANCE.isUNCPBlocking());
                 if (p_setModelVisibilities_1_.getItemInUseCount() > 0 || isForceBlocking) {
                     EnumAction enumaction = isForceBlocking? EnumAction.BLOCK : itemstack.getItemUseAction();
                     if (enumaction == EnumAction.BLOCK) {
