@@ -344,8 +344,8 @@ public abstract class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
             modifiedInput.moveForward = secondSneakSlowDownEvent.getForward();
         }
 
-        final noSlowDown NoSlowDown = NoSlowDown.INSTANCE;
-        final aura Aura = Aura.INSTANCE;
+        final NoSlowDown noSlowDown = NoSlowDown.INSTANCE;
+        final Aura aura = Aura.INSTANCE;
 
         boolean isUsingItem = getHeldItem() != null && (isUsingItem() || (getHeldItem().getItem() instanceof ItemSword && aura.getBlockStatus()) || NoSlowDown.INSTANCE.isUNCPBlocking());
 

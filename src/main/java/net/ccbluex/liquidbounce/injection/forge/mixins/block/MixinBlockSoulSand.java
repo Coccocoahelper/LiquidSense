@@ -20,7 +20,7 @@ public class MixinBlockSoulSand {
 
     @Inject(method = "onEntityCollidedWithBlock", at = @At("HEAD"), cancellable = true)
     private void onEntityCollidedWithBlock(CallbackInfo callbackInfo) {
-        final noSlowDown NoSlowDown = NoSlowDown.INSTANCE;
+        final NoSlowDown noSlowDown = NoSlowDown.INSTANCE;
 
         if (noSlowDown.handleEvents() && noSlowDown.getSoulsand())
             callbackInfo.cancel();
