@@ -609,7 +609,7 @@ object RenderUtils : MinecraftInstance() {
     /**
      * Optimized version of drawRect (Float)
      */
-    fun drawRect(x1: Float, y1: Float, x2: Float, y2: Float, color: Int) {
+    fun drawRectNew(x1: Float, y1: Float, x2: Float, y2: Float, color: Int) {
         val alpha = ((color shr 24) and 0xFF) / 255f
         val red = ((color shr 16) and 0xFF) / 255f
         val green = ((color shr 8) and 0xFF) / 255f
