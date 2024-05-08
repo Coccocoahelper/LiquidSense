@@ -79,7 +79,7 @@ object BlackStyle : Style() {
     }
 
     override fun drawButtonElement(mouseX: Int, mouseY: Int, buttonElement: ButtonElement) {
-        drawRectNewwInt(
+        drawRectNewInt(
             buttonElement.x - 1,
             buttonElement.y - 1,
             buttonElement.x + buttonElement.width + 1,
