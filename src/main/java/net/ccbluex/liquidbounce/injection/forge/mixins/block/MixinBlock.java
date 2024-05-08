@@ -99,7 +99,7 @@ public abstract class MixinBlock {
         float f = callbackInfo.getReturnValue();
 
         // NoSlowBreak
-        final NoSlowBreak NoSlowBreak = NoSlowBreak.INSTANCE;
+        final NoSlowBreak noSlowBreak = NoSlowBreak.INSTANCE;
         if (NoSlowBreak.handleEvents()) {
             if (NoSlowBreak.getWater() && playerIn.isInsideOfMaterial(Material.water) && !EnchantmentHelper.getAquaAffinityModifier(playerIn)) {
                 f *= 5f;
