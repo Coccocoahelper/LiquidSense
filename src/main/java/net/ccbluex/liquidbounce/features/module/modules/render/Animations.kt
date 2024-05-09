@@ -49,7 +49,7 @@ object Animations : Module("Animations", ModuleCategory.RENDER, gameDetecting = 
         SwankAnimation()
     )
 
-    private val animationMode by ListValue("Mode", animations.map { it.name }.toTypedArray(), defaultAnimation)
+    private val animationMode by ListValue("Mode", animations.map { it.name }.toTypedArray(), "OneSeven")
     val oddSwing by BoolValue("OddSwing", false)
     val swingSpeed by IntegerValue("SwingSpeed", 15, 0..20)
 

@@ -7,7 +7,7 @@ import net.ccbluex.liquidbounce.ui.client.hud.element.Border
 import net.ccbluex.liquidbounce.ui.client.hud.element.Element
 import net.ccbluex.liquidbounce.ui.client.hud.element.ElementInfo
 import net.ccbluex.liquidbounce.ui.client.hud.element.Side
-import net.ccbluex.liquidbounce.ui.font.Fonts
+import net.ccbluex.liquidbounce.ui.font.Fonts.font25
 import net.ccbluex.liquidbounce.utils.GuiPlayerTabOverlay
 import net.ccbluex.liquidbounce.utils.render.RenderUtils.drawBorderedRect
 import net.ccbluex.liquidbounce.utils.render.RenderUtils.drawRectNew
@@ -61,21 +61,21 @@ class TargetHud(x: Double = 40.0, y: Double = 100.0 , side: Side = Side(Side.Hor
             drawBorderedRect(0f, 0f, width, 43f, 3f ,  Color(0,0,0,150).rgb , 0)
             drawRectNew(0f, 0f, width, 43f, Color(15, 15, 15).rgb)
             //
-            Fonts.font15.drawString(Name, 37.5f, Y + 2, Color(255, 255, 255).rgb, false)
+            font25.drawString(Name, 37.5f, Y + 2, Color(255, 255, 255).rgb, false)
             Y += 24
-            Fonts.font15.drawString(Armor, 35f , Y, Color(255, 255, 255).rgb, false)
+            font25.drawString(Armor, 35f , Y, Color(255, 255, 255).rgb, false)
 
             if (h != null) {
                 // Armor
                 Armor(KillAura, Y)
 
                 //DistanceToEntity
-                DistanceToEntity(Fonts., KillAura, Y, Distance)
+                DistanceToEntity(font25, KillAura, Y, Distance)
 
                 //Main Render
                 DefBackground(KillAura, width, Y)
 
-                var x2 = if(KillAura.target?.health!! <= 20) 99F * KillAura.target?.maxHealth!! / 20 - h.toFloat() else 99f
+                var x2 = if (KillAura.target?.health!! <= 20) 99F * KillAura.target?.maxHealth!! / 20 - h.toFloat() else 99f
 
                 RainbowShader.begin(backgroundRectRainbow, if (rainbowX.get() == 0.0F) 0.0F else 1.0F / rainbowX.get(), if (rainbowY.get() == 0.0F) 0.0F else 1.0F / rainbowY.get(), System.currentTimeMillis() % 10000 / 100000F).use {
                     drawRectNew(1f, 38f, x2, 41f, when {
@@ -84,7 +84,7 @@ class TargetHud(x: Double = 40.0, y: Double = 100.0 , side: Side = Side(Side.Hor
                     })
                 }
             }
-            when (Mode.get().toLowerCase()) {
+            when (mode, ignoreCase = true) {
                 "head" -> {
                     head(KillAura)
                 }
