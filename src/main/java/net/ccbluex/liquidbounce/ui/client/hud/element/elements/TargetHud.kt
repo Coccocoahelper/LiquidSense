@@ -84,7 +84,7 @@ class TargetHud(x: Double = 40.0, y: Double = 100.0 , side: Side = Side(Side.Hor
                     })
                 }
             }
-            when (mode, ignoreCase = true) {
+            when (mode.toLowerCase()) {
                 "head" -> {
                     head(KillAura)
                 }
