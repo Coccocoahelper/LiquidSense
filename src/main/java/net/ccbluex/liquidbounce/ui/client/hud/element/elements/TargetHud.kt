@@ -31,18 +31,17 @@ import kotlin.math.atan
 class TargetHud(x: Double = 40.0, y: Double = 100.0 , side: Side = Side(Side.Horizontal.MIDDLE, Side.Vertical.DOWN)) : Element(x, y ,1.0f,side) {
     private val mode = ListValue("Mode", arrayOf("Head", "Model"), "Head")
 
-    private val backgroundMode = ListValue("Background-Color", arrayOf("Custom", "Rainbow"), "Custom")
-    private val backgroundRed = IntegerValue("Background-R", 0, 0..255) { backgroundMode == "Custom" }
-    private val backgroundGreen = IntegerValue("Background-G", 0, 0..255) { backgroundMode == "Custom" }
-    private val backgroundBlue = IntegerValue("Background-B", 0, 0..255) { backgroundMode == "Custom" }
-    private val backgroundAlpha = IntegerValue("Background-Alpha", 0, 0..255) { backgroundMode == "Custom" }
+    private val backgroundMode by ListValue("Background-Color", arrayOf("Custom", "Rainbow"), "Custom")
+    private val backgroundRed by IntegerValue("Background-R", 0, 0..255) { backgroundMode == "Custom" }
+    private val backgroundGreen by IntegerValue("Background-G", 0, 0..255) { backgroundMode == "Custom" }
+    private val backgroundBlue by IntegerValue("Background-B", 0, 0..255) { backgroundMode == "Custom" }
+    private val backgroundAlpha by IntegerValue("Background-Alpha", 0, 0..255) { backgroundMode == "Custom" }
     
-    private val rainbowX = FloatValue("Rainbow-X", -1000F, -2000F..2000F) { backgroundMode == "Rainbow" }
-    private val rainbowY = FloatValue("Rainbow-Y", -1000F, -2000F..2000F) { backgroundMode == "Rainbow" }
+    private val rainbowX by FloatValue("Rainbow-X", -1000F, -2000F..2000F) { backgroundMode == "Rainbow" }
+    private val rainbowY by FloatValue("Rainbow-Y", -1000F, -2000F..2000F) { backgroundMode == "Rainbow" }
 
 
     private var modules = emptyList<Module>()
-
 
     /**
      * @Dev : LiquidSlowly : 727819556@qq.com
