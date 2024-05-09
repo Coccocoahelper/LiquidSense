@@ -29,14 +29,14 @@ import kotlin.math.atan
 
 @ElementInfo(name = "TargetHud")
 class TargetHud(x: Double = 40.0, y: Double = 100.0 , side: Side = Side(Side.Horizontal.MIDDLE, Side.Vertical.DOWN)) : Element(x, y ,1.0f,side) {
-    private val Mode = ListValue("Mode", arrayOf("Head", "Model"), "Head")
+    private val mode = ListValue("Mode", arrayOf("Head", "Model"), "Head")
     private val rainbowX = FloatValue("Rainbow-X", -1000F, -2000F..2000F)
     private val rainbowY = FloatValue("Rainbow-Y", -1000F, -2000F..2000F)
-    private val backgroundColorModeValue = ListValue("Background-Color", arrayOf("Custom", "Rainbow"), "Custom")
-    private val backgroundColorRedValue = IntegerValue("Background-R", 0, 0..255)
-    private val backgroundColorGreenValue = IntegerValue("Background-G", 0, 0..255)
-    private val backgroundColorBlueValue = IntegerValue("Background-B", 0, 0..255)
-    private val backgroundColorAlphaValue = IntegerValue("Background-Alpha", 0, 0..255)
+    private val backgroundColorMode = ListValue("Background-Color", arrayOf("Custom", "Rainbow"), "Custom")
+    private val backgroundColorRed = IntegerValue("Background-R", 0, 0..255)
+    private val backgroundColorGreen = IntegerValue("Background-G", 0, 0..255)
+    private val backgroundColorBlue = IntegerValue("Background-B", 0, 0..255)
+    private val backgroundColorAlpha = IntegerValue("Background-Alpha", 0, 0..255)
 
 
     private var modules = emptyList<Module>()
@@ -48,9 +48,8 @@ class TargetHud(x: Double = 40.0, y: Double = 100.0 , side: Side = Side(Side.Hor
     override fun drawElement(): Border {
         var Y = 3F
         var width = 100F
-        val backgroundColorMode = backgroundColorModeValue.get()
         val backgroundRectRainbow = backgroundColorMode.equals("Rainbow", ignoreCase = true)
-        val backgroundCustomColor = Color(backgroundColorRedValue.get(), backgroundColorGreenValue.get(), backgroundColorBlueValue.get(), backgroundColorAlphaValue.get()).rgb
+        val backgroundCustomColor = Color(backgroundColorRed, backgroundColorGreen, backgroundColorBlue, backgroundColorAlpha).rgb
         var Name ="§f" + KillAura.target?.name
         var Health = "§2" + KillAura.target?.health?.times(5)?.toUInt() + "%"
         var Armor = "Armor"
@@ -77,7 +76,7 @@ class TargetHud(x: Double = 40.0, y: Double = 100.0 , side: Side = Side(Side.Hor
 
                 var x2 = if (KillAura.target?.health!! <= 20) 99F * KillAura.target?.maxHealth!! / 20 - h.toFloat() else 99f
 
-                RainbowShader.begin(backgroundRectRainbow, if (rainbowX.get() == 0.0F) 0.0F else 1.0F / rainbowX.get(), if (rainbowY.get() == 0.0F) 0.0F else 1.0F / rainbowY.get(), System.currentTimeMillis() % 10000 / 100000F).use {
+                RainbowShader.begin(backgroundRectRainbow, if (rainbowX == 0.0F) 0.0F else 1.0F / rainbowX.get(), if (rainbowY == 0.0F) 0.0F else 1.0F / rainbowY, System.currentTimeMillis() % 10000 / 100000F).use {
                     drawRectNew(1f, 38f, x2, 41f, when {
                         backgroundRectRainbow -> 0xFF shl 24
                         else -> backgroundCustomColor
