@@ -150,12 +150,7 @@ object Velocity : Module("Velocity", ModuleCategory.COMBAT, hideModule = false) 
     private var timerTicks = 0
 
     override val tag
-        get() = if (mode == "Simple" || mode == "Legit") {
-            val horizontalPercentage = (horizontal * 100).toInt()
-            val verticalPercentage = (vertical * 100).toInt()
-
-            "$horizontalPercentage% $verticalPercentage%"
-        } else mode
+        get() = mode
 
     override fun onDisable() {
         mc.thePlayer?.speedInAir = 0.02F
@@ -165,17 +160,17 @@ object Velocity : Module("Velocity", ModuleCategory.COMBAT, hideModule = false) 
 
     @EventTarget
     fun onUpdate(event: UpdateEvent) {
-        val thePlayer = mc.thePlayer ?: return
+        val player = mc.thePlayer ?: return
 
-        if (thePlayer.isInWater || thePlayer.isInLava || thePlayer.isInWeb)
+        if (player.isInWater || player.isInLava || player.isInWeb)
             return
 
         when (mode.lowercase()) {
             "glitch" -> {
-                thePlayer.noClip = hasReceivedVelocity
+                player.noClip = hasReceivedVelocity
 
-                if (thePlayer.hurtTime == 7)
-                    thePlayer.motionY = 0.4
+                if (player.hurtTime == 7)
+                    player.motionY = 0.4
 
                 hasReceivedVelocity = false
             }
@@ -186,7 +181,7 @@ object Velocity : Module("Velocity", ModuleCategory.COMBAT, hideModule = false) 
                 if (!hasReceivedVelocity)
                     return
 
-                if (!thePlayer.onGround) {
+                if (!player.onGround) {
                     if (onLook && !isLookingOnEntities(nearbyEntity, maxAngleDifference.toDouble())) {
                         return
                     }
@@ -200,21 +195,21 @@ object Velocity : Module("Velocity", ModuleCategory.COMBAT, hideModule = false) 
                 val nearbyEntity = getNearestEntityInRange() ?: return
 
                 if (!hasReceivedVelocity) {
-                    thePlayer.speedInAir = 0.02F
+                    player.speedInAir = 0.02F
                     return
                 }
 
-                if (thePlayer.hurtTime > 0)
+                if (player.hurtTime > 0)
                     reverseHurt = true
 
-                if (!thePlayer.onGround) {
+                if (!player.onGround) {
                     if (onLook && !isLookingOnEntities(nearbyEntity, maxAngleDifference.toDouble())) {
-                        thePlayer.speedInAir = 0.02F
+                        player.speedInAir = 0.02F
                         return
                     }
 
                     if (reverseHurt)
-                        thePlayer.speedInAir = reverse2Strength
+                        player.speedInAir = reverse2Strength
                 } else if (velocityTimer.hasTimePassed(80)) {
                     hasReceivedVelocity = false
                     reverseHurt = false
@@ -222,50 +217,50 @@ object Velocity : Module("Velocity", ModuleCategory.COMBAT, hideModule = false) 
             }
 
             "aac" -> if (hasReceivedVelocity && velocityTimer.hasTimePassed(80)) {
-                thePlayer.motionX *= horizontal
-                thePlayer.motionZ *= horizontal
+                player.motionX *= horizontal
+                player.motionZ *= horizontal
                 //mc.thePlayer.motionY *= vertical ?
                 hasReceivedVelocity = false
             }
 
             "aacv4" ->
-                if (thePlayer.hurtTime > 0 && !thePlayer.onGround) {
+                if (player.hurtTime > 0 && !player.onGround) {
                     val reduce = aacv4MotionReducer
-                    thePlayer.motionX *= reduce
-                    thePlayer.motionZ *= reduce
+                    player.motionX *= reduce
+                    player.motionZ *= reduce
                 }
 
             "aacpush" -> {
                 if (jump) {
-                    if (thePlayer.onGround)
+                    if (player.onGround)
                         jump = false
                 } else {
                     // Strafe
-                    if (thePlayer.hurtTime > 0 && thePlayer.motionX != 0.0 && thePlayer.motionZ != 0.0)
-                        thePlayer.onGround = true
+                    if (player.hurtTime > 0 && player.motionX != 0.0 && player.motionZ != 0.0)
+                        player.onGround = true
 
                     // Reduce Y
-                    if (thePlayer.hurtResistantTime > 0 && aacPushYReducer && !Speed.handleEvents())
-                        thePlayer.motionY -= 0.014999993
+                    if (player.hurtResistantTime > 0 && aacPushYReducer && !Speed.handleEvents())
+                        player.motionY -= 0.014999993
                 }
 
                 // Reduce XZ
-                if (thePlayer.hurtResistantTime >= 19) {
+                if (player.hurtResistantTime >= 19) {
                     val reduce = aacPushXZReducer
 
-                    thePlayer.motionX /= reduce
-                    thePlayer.motionZ /= reduce
+                    player.motionX /= reduce
+                    player.motionZ /= reduce
                 }
             }
 
             "aaczero" ->
-                if (thePlayer.hurtTime > 0) {
-                    if (!hasReceivedVelocity || thePlayer.onGround || thePlayer.fallDistance > 2F)
+                if (player.hurtTime > 0) {
+                    if (!hasReceivedVelocity || player.onGround || player.fallDistance > 2F)
                         return
 
-                    thePlayer.motionY -= 1.0
-                    thePlayer.isAirBorne = true
-                    thePlayer.onGround = true
+                    player.motionY -= 1.0
+                    player.isAirBorne = true
+                    player.onGround = true
                 } else
                     hasReceivedVelocity = false
 
@@ -273,24 +268,24 @@ object Velocity : Module("Velocity", ModuleCategory.COMBAT, hideModule = false) 
                 if (legitDisableInAir && !isOnGround(0.5))
                     return
 
-                if (mc.thePlayer.maxHurtResistantTime != mc.thePlayer.hurtResistantTime || mc.thePlayer.maxHurtResistantTime == 0)
+                if (player.maxHurtResistantTime != player.hurtResistantTime || player.maxHurtResistantTime == 0)
                     return
 
                 if (nextInt(endExclusive = 100) < chance) {
                     val horizontal = horizontal / 100f
                     val vertical = vertical / 100f
 
-                    thePlayer.motionX *= horizontal.toDouble()
-                    thePlayer.motionZ *= horizontal.toDouble()
-                    thePlayer.motionY *= vertical.toDouble()
+                    player.motionX *= horizontal.toDouble()
+                    player.motionZ *= horizontal.toDouble()
+                    player.motionY *= vertical.toDouble()
                 }
             }
 
             "intave" -> {
                 intaveTick++
-                if (hasReceivedVelocity && mc.thePlayer.hurtTime == 2) {
-                    if (mc.thePlayer.onGround && intaveTick % 2 == 0) {
-                        mc.thePlayer.tryJump()
+                if (hasReceivedVelocity && player.hurtTime == 2) {
+                    if (player.onGround && intaveTick % 2 == 0) {
+                        player.tryJump()
                         intaveTick = 0
                     }
                     hasReceivedVelocity = false

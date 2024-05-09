@@ -50,7 +50,7 @@ class TargetHud(x: Double = 40.0, y: Double = 100.0 , side: Side = Side(Side.Hor
         var Y = 3F
         var width = 100F
         val backgroundRectRainbow = backgroundMode == "Rainbow"
-        val backgroundCustomColor = Color(backgroundRed, backgroundGreen, backgroundBlue, backgroundAlpha).rgb
+        val backgroundColor = Color(backgroundRed, backgroundGreen, backgroundBlue, backgroundAlpha).rgb
         var Name ="§f" + KillAura.target?.name
         var Health = "§2" + KillAura.target?.health?.times(5)?.toUInt() + "%"
         var Armor = "Armor"
@@ -84,7 +84,7 @@ class TargetHud(x: Double = 40.0, y: Double = 100.0 , side: Side = Side(Side.Hor
                     })
                 }
             }
-            when (mode.toLowerCase()) {
+            when (mode.lowercase()) {
                 "head" -> {
                     head(KillAura)
                 }
