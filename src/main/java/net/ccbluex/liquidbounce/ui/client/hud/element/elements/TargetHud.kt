@@ -53,24 +53,24 @@ class TargetHud(x: Double = 40.0, y: Double = 100.0 , side: Side = Side(Side.Hor
         val backgroundCustomColor = Color(backgroundColorRedValue.get(), backgroundColorGreenValue.get(), backgroundColorBlueValue.get(), backgroundColorAlphaValue.get()).rgb
         var Name ="§f" + KillAura.target?.name
         var Health = "§2" + KillAura.target?.health?.times(5)?.toUInt() + "%"
-        var Armor = "Armor>>"
-        var Distance = "Dist>>"
+        var Armor = "Armor"
+        var Distance = "Distance"
         var h = (KillAura.target?.maxHealth?.minus(KillAura.target?.health!!))?.times(5)
 
         if (KillAura.handleEvents() && KillAura.target != null) {
             drawBorderedRect(0f, 0f, width, 43f, 3f ,  Color(0,0,0,150).rgb , 0)
             drawRectNew(0f, 0f, width, 43f, Color(15, 15, 15).rgb)
             //
-            Fonts.minecraftFont.drawString(Name, 37.5f, Y + 2, Color(255, 255, 255).rgb, false)
+            Fonts.font15.drawString(Name, 37.5f, Y + 2, Color(255, 255, 255).rgb, false)
             Y += 24
-            Fonts.minecraftFont.drawString(Armor, 35f , Y, Color(255, 255, 255).rgb, false)
+            Fonts.font15.drawString(Armor, 35f , Y, Color(255, 255, 255).rgb, false)
 
             if (h != null) {
                 // Armor
                 Armor(KillAura, Y)
 
                 //DistanceToEntity
-                DistanceToEntity(Fonts.minecraftFont, KillAura, Y, Distance)
+                DistanceToEntity(Fonts., KillAura, Y, Distance)
 
                 //Main Render
                 DefBackground(KillAura, width, Y)
