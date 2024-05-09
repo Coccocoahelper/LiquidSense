@@ -8,7 +8,7 @@ package net.ccbluex.liquidbounce.features.module.modules.world
 import net.ccbluex.liquidbounce.event.*
 import net.ccbluex.liquidbounce.features.module.Module
 import net.ccbluex.liquidbounce.features.module.ModuleCategory
-import net.ccbluex.liquidbounce.features.module.modules.combat.Aura
+import net.ccbluex.liquidbounce.features.module.modules.combat.KillAura
 import net.ccbluex.liquidbounce.features.module.modules.player.Blink
 import net.ccbluex.liquidbounce.utils.ClientUtils.displayChatMessage
 import net.ccbluex.liquidbounce.utils.EntityUtils.isSelected
@@ -129,7 +129,7 @@ object ChestAura : Module("ChestAura", ModuleCategory.WORLD) {
 
     @EventTarget
     fun onMotion(event: MotionEvent) {
-        if (Blink.handleEvents() || Aura.isBlockingChestAura || event.eventState != EventState.POST || !timer.hasTimePassed(delay))
+        if (Blink.handleEvents() || KillAura.isBlockingChestAura || event.eventState != EventState.POST || !timer.hasTimePassed(delay))
             return
 
         val thePlayer = mc.thePlayer ?: return

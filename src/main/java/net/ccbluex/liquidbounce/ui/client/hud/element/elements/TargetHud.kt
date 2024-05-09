@@ -2,7 +2,7 @@ package net.ccbluex.liquidbounce.ui.client.hud.element.elements
 
 import net.ccbluex.liquidbounce.LiquidBounce
 import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.modules.combat.Aura
+import net.ccbluex.liquidbounce.features.module.modules.combat.KillAura
 import net.ccbluex.liquidbounce.ui.client.hud.element.Border
 import net.ccbluex.liquidbounce.ui.client.hud.element.Element
 import net.ccbluex.liquidbounce.ui.client.hud.element.ElementInfo
@@ -51,13 +51,13 @@ class TargetHud(x: Double = 40.0, y: Double = 100.0 , side: Side = Side(Side.Hor
         val backgroundColorMode = backgroundColorModeValue.get()
         val backgroundRectRainbow = backgroundColorMode.equals("Rainbow", ignoreCase = true)
         val backgroundCustomColor = Color(backgroundColorRedValue.get(), backgroundColorGreenValue.get(), backgroundColorBlueValue.get(), backgroundColorAlphaValue.get()).rgb
-        var Name ="§f" + Aura.target?.name
-        var Health = "§2" + Aura.target?.health?.times(5)?.toUInt() + "%"
+        var Name ="§f" + KillAura.target?.name
+        var Health = "§2" + KillAura.target?.health?.times(5)?.toUInt() + "%"
         var Armor = "Armor>>"
         var Distance = "Dist>>"
-        var h = (Aura.target?.maxHealth?.minus(Aura.target?.health!!))?.times(5)
+        var h = (KillAura.target?.maxHealth?.minus(KillAura.target?.health!!))?.times(5)
 
-        if (Aura.handleEvents() && Aura.target != null) {
+        if (KillAura.handleEvents() && KillAura.target != null) {
             drawBorderedRect(0f, 0f, width, 43f, 3f ,  Color(0,0,0,150).rgb , 0)
             drawRectNew(0f, 0f, width, 43f, Color(15, 15, 15).rgb)
             //
@@ -67,15 +67,15 @@ class TargetHud(x: Double = 40.0, y: Double = 100.0 , side: Side = Side(Side.Hor
 
             if (h != null) {
                 // Armor
-                Armor(Aura, Y)
+                Armor(KillAura, Y)
 
                 //DistanceToEntity
-                DistanceToEntity(Fonts.minecraftFont, Aura, Y, Distance)
+                DistanceToEntity(Fonts.minecraftFont, KillAura, Y, Distance)
 
                 //Main Render
-                DefBackground(Aura, width, Y)
+                DefBackground(KillAura, width, Y)
 
-                var x2 = if(Aura.target?.health!! <= 20) 99F * Aura.target?.maxHealth!! / 20 - h.toFloat() else 99f
+                var x2 = if(KillAura.target?.health!! <= 20) 99F * KillAura.target?.maxHealth!! / 20 - h.toFloat() else 99f
 
                 RainbowShader.begin(backgroundRectRainbow, if (rainbowX.get() == 0.0F) 0.0F else 1.0F / rainbowX.get(), if (rainbowY.get() == 0.0F) 0.0F else 1.0F / rainbowY.get(), System.currentTimeMillis() % 10000 / 100000F).use {
                     drawRectNew(1f, 38f, x2, 41f, when {
@@ -86,13 +86,13 @@ class TargetHud(x: Double = 40.0, y: Double = 100.0 , side: Side = Side(Side.Hor
             }
             when (Mode.get().toLowerCase()) {
                 "head" -> {
-                    head(Aura)
+                    head(KillAura)
                 }
                 "model" -> {
                     GlStateManager.pushMatrix()
                     GlStateManager.scale(0.27,0.27,0.27)
                     GlStateManager.translate(60f,130f,40f)
-                    Model(Aura.target?.rotationYaw!!.toFloat(), Aura.target?.rotationPitch!!.toFloat(),Aura.target!!)
+                    Model(KillAura.target?.rotationYaw!!.toFloat(), KillAura.target?.rotationPitch!!.toFloat(),KillAura.target!!)
                     GlStateManager.popMatrix()
                 }
             }
@@ -101,8 +101,8 @@ class TargetHud(x: Double = 40.0, y: Double = 100.0 , side: Side = Side(Side.Hor
         return Border(0f, 0f, width, 43f)
     }
 
-    fun DistanceToEntity (fontRenderer: FontRenderer, aura: Aura , Y : Float , Distance : String) {
-        var Distances = if (aura.target?.getDistanceToEntity(mc.thePlayer)!! <= 8) { (aura.target?.getDistanceToEntity(mc.thePlayer)!! * 2.25f) } else { 18f }
+    fun DistanceToEntity (fontRenderer: FontRenderer, killAura: KillAura , Y : Float , Distance : String) {
+        var Distances = if (killAura.target?.getDistanceToEntity(mc.thePlayer)!! <= 8) { (killAura.target?.getDistanceToEntity(mc.thePlayer)!! * 2.25f) } else { 18f }
         GlStateManager.pushMatrix()
         Y == 26.5f
         GlStateManager.translate(75.5f,-10f,0f)
@@ -112,20 +112,20 @@ class TargetHud(x: Double = 40.0, y: Double = 100.0 , side: Side = Side(Side.Hor
         GlStateManager.popMatrix()
     }
 
-    fun Armor (aura: Aura, Y : Float) {
+    fun Armor (killAura: KillAura, Y : Float) {
         GlStateManager.pushMatrix()
         Y == 26.5f
         GlStateManager.translate(75.5f, 0f, 0f)
         drawBox(-0.5f,Y + 2f, 18.5f, Y + 6.75f, 0.5f , Color(24, 27, 30).rgb, Color(0, 0, 0).rgb)
-        drawRectNew(0.0f, Y + 2.5f, (aura.target?.totalArmorValue!!) * 0.9f , 33.2f, Color(50, 100, 200).rgb)
+        drawRectNew(0.0f, Y + 2.5f, (killAura.target?.totalArmorValue!!) * 0.9f , 33.2f, Color(50, 100, 200).rgb)
         GlStateManager.popMatrix()
     }
 
-    fun DefBackground (aura: Aura, width :  Float , Y : Float) {
-        drawBox(0.5f, Y  + 10.5f, width - 1f, Y + 14.5f, 0.5f, if (aura.target?.health!! <= 20) Color(35, 35, 35).rgb else Color(130, 90, 80).rgb, Color(50, 50, 50,150).rgb)
+    fun DefBackground (killAura: KillAura, width :  Float , Y : Float) {
+        drawBox(0.5f, Y  + 10.5f, width - 1f, Y + 14.5f, 0.5f, if (killAura.target?.health!! <= 20) Color(35, 35, 35).rgb else Color(130, 90, 80).rgb, Color(50, 50, 50,150).rgb)
     }
 
-    fun head (aura: Aura) {
+    fun head (killAura: KillAura) {
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f)
         val var5: List<*> = GuiPlayerTabOverlay.field_175252_a.sortedCopy<NetworkPlayerInfo>(mc.thePlayer.sendQueue.getPlayerInfoMap())
         val var17 = var5.iterator()
@@ -135,10 +135,10 @@ class TargetHud(x: Double = 40.0, y: Double = 100.0 , side: Side = Side(Side.Hor
         while (var17.hasNext()) {
             val aVar5 = var17.next()!!
             val var24 = aVar5 as NetworkPlayerInfo
-            if (aura.target is EntityPlayer) {
+            if (killAura.target is EntityPlayer) {
                 mc.getTextureManager().bindTexture(var24.locationSkin)
                 Gui.drawScaledCustomSizeModalRect(2, 2, 8.0f, 8.0f, 8, 8, 32, 32, 64.0f, 64.0f)
-                if ((aura.target as EntityPlayer).isInWater()) {
+                if ((killAura.target as EntityPlayer).isInWater()) {
                     Gui.drawScaledCustomSizeModalRect(2, 2, 40.0f, 8.0f, 8, 8, 32, 32, 64.0f, 64.0f)
                 }
                 GlStateManager.bindTexture(0)

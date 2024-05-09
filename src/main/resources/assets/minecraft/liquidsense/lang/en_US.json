@@ -47,7 +47,7 @@
 
         "module.ignite.description": "Automatically sets targets around you on fire.",
 
-        "module.Aura.description": "Automatically attacks targets around you.",
+        "module.KillAura.description": "Automatically attacks targets around you.",
 
         "module.noFriends.description": "Allows you to attack friends.",
 
@@ -83,7 +83,7 @@
         
         "module.antiBlind.description": "Cancels blindness effects.",
         
-        "module.antiBot.description": "Prevents Aura from attacking AntiCheat bots.",
+        "module.antiBot.description": "Prevents KillAura from attacking AntiCheat bots.",
 
         "module.antiExploit": "Prevents server from crashing you.",
         
@@ -325,7 +325,7 @@
         
         "module.tNTESP.description": "Allows you to see ignited TNT blocks through walls.",
         
-        "module.teams.description": "Prevents Aura from attacking team mates.",
+        "module.teams.description": "Prevents KillAura from attacking team mates.",
         
         "module.teleport.description": "Allows you to teleport around.",
 

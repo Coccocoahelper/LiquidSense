@@ -43,7 +43,7 @@
 
         "module.ignite.description": "Автоматически поджигает врагов.",
 
-        "module.Aura.description": "Автоматически атакует врагов вокруг.",
+        "module.KillAura.description": "Автоматически атакует врагов вокруг.",
 
         "module.noFriends.description": "Позволяет атаковать друзей.",
 
@@ -77,7 +77,7 @@
         
         "module.antiBlind.description": "Убирает эффект слепоты.",
         
-        "module.antiBot.description": "Aura не будет атаковать Античит ботов.",
+        "module.antiBot.description": "KillAura не будет атаковать Античит ботов.",
         
         "module.antiCactus.description": "Отключает урон от кактусов.",
         
@@ -311,7 +311,7 @@
         
         "module.tNTESP.description": "Позволяет видеть активированный TNT сквозь блоки.",
         
-        "module.teams.description": "Не даёт Aura атаковать тиммейтов.",
+        "module.teams.description": "Не даёт KillAura атаковать тиммейтов.",
         
         "module.teleport.description": "Позволяет недалеко телепортироваться.",
 

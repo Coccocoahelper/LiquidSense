@@ -33,7 +33,7 @@ open class Module constructor(
     private val canBeEnabled: Boolean = true,
     private val forcedDescription: String? = null,
 
-    // Adds spaces between lowercase and uppercase letters (Aura -> Kill Aura)
+    // Adds spaces between lowercase and uppercase letters (KillAura -> Kill Aura)
     val spacedName: String = name.split("(?<=[a-z])(?=[A-Z])".toRegex()).joinToString(separator = " "),
     val subjective: Boolean = category == ModuleCategory.RENDER,
     val gameDetecting: Boolean = canBeEnabled,

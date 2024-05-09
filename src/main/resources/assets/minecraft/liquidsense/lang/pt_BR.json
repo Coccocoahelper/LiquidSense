@@ -43,7 +43,7 @@
 
         "module.ignite.description": "Define automaticamente os alvos ao seu redor em chamas.",
 
-        "module.Aura.description": "Ataca automaticamente os alvos ao seu redor.",
+        "module.KillAura.description": "Ataca automaticamente os alvos ao seu redor.",
 
         "module.noFriends.description": "Permite atacar amigos.",
 
@@ -75,7 +75,7 @@
 
         "module.antiBlind.description": "Cancela efeitos de cegueira.",
 
-        "module.antiBot.description": "Impede que o Aura ataque bots de AntiCheat.",
+        "module.antiBot.description": "Impede que o KillAura ataque bots de AntiCheat.",
 
         "module.antiCactus.description": "Impede que cactos o danifiquem.",
 
@@ -307,7 +307,7 @@
 
         "module.tNTESP.description": "Permite ver blocos de TNT acesos através de paredes.",
 
-        "module.teams.description": "Impede que o Aura ataque companheiros de equipe.",
+        "module.teams.description": "Impede que o KillAura ataque companheiros de equipe.",
 
         "module.teleport.description": "Permite teletransportar-se pelo mapa.",
 

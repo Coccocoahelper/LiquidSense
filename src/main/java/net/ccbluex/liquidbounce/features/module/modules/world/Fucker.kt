@@ -8,7 +8,7 @@ package net.ccbluex.liquidbounce.features.module.modules.world
 import net.ccbluex.liquidbounce.event.*
 import net.ccbluex.liquidbounce.features.module.Module
 import net.ccbluex.liquidbounce.features.module.ModuleCategory
-import net.ccbluex.liquidbounce.features.module.modules.combat.Aura
+import net.ccbluex.liquidbounce.features.module.modules.combat.KillAura
 import net.ccbluex.liquidbounce.features.module.modules.player.AutoTool
 import net.ccbluex.liquidbounce.utils.PacketUtils.sendPacket
 import net.ccbluex.liquidbounce.utils.RotationUtils.currentRotation
@@ -100,7 +100,7 @@ object Fucker : Module("Fucker", ModuleCategory.WORLD, hideModule = false) {
         val player = mc.thePlayer ?: return
         val world = mc.theWorld ?: return
 
-        if (event.eventState != EventState.POST || noHit && Aura.handleEvents() && Aura.target != null) {
+        if (event.eventState != EventState.POST || noHit && KillAura.handleEvents() && KillAura.target != null) {
             return
         }
 

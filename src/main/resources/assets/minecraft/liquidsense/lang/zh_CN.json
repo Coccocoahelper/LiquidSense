@@ -46,7 +46,7 @@
 
         "module.ignite.description": "自动在周围的目标脚下点火。",
 
-        "module.Aura.description": "自动攻击周围的目标。",
+        "module.KillAura.description": "自动攻击周围的目标。",
 
         "module.noFriends.description": "忽略朋友功能。",
 

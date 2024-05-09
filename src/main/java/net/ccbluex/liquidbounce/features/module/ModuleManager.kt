@@ -131,7 +131,7 @@ object ModuleManager : Listenable {
             KeepContainer,
             KeyPearl,
             Kick,
-            Aura,
+            KillAura,
             LadderJump,
             LiquidChat,
             LiquidWalk,

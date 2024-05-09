@@ -6,7 +6,7 @@
 
 package net.ccbluex.liquidbounce.ui.client.hud.element.elements
 
-import net.ccbluex.liquidbounce.features.module.modules.combat.Aura
+import net.ccbluex.liquidbounce.features.module.modules.combat.KillAura
 import net.ccbluex.liquidbounce.ui.client.hud.element.Border
 import net.ccbluex.liquidbounce.ui.client.hud.element.Element
 import net.ccbluex.liquidbounce.ui.client.hud.element.ElementInfo
@@ -73,9 +73,9 @@ class Target : Element() {
     private var lastTarget: Entity? = null
 
     override fun drawElement(): Border {
-        val target = Aura.target
+        val target = KillAura.target
 
-        if (Aura.handleEvents() && target is EntityPlayer) {
+        if (KillAura.handleEvents() && target is EntityPlayer) {
             val targetHealth = getHealth(target, healthFromScoreboard, absorption)
 
             // Calculate health color based on entity's health
