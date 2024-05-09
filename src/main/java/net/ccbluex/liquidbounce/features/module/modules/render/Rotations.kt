@@ -58,4 +58,7 @@ object Rotations : Module("Rotations", ModuleCategory.RENDER, gameDetecting = fa
      * Which rotation should the module use?
      */
     fun getRotation() = if (Derp.handleEvents()) serverRotation else currentRotation
+
+    override val tag: String?
+        get() = if realistic "Other" else null
 }
