@@ -51,10 +51,10 @@ import kotlin.concurrent.thread
 
 object LiquidBounce {
 
-    // Client information
+    // Client Information
     const val CLIENT_NAME = "LiquidSense"
     val clientVersionText = gitInfo["git.build.version"]?.toString() ?: "unknown"
-    val clientVersionNumber = clientVersionText.substring(1).toIntOrNull() ?: 0 // version format: "b<VERSION>" on legacy
+    val clientVersionNumber = clientVersionText.substring(1).toIntOrNull() ?: 0 // version format: "B<VERSION>"
     val clientCommit = gitInfo["git.commit.id.abbrev"]?.let { "git-$it" } ?: "unknown"
     val clientBranch = gitInfo["git.branch"]?.toString() ?: "unknown"
     const val IN_DEV = true
